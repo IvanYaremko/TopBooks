@@ -3,17 +3,37 @@ package com.yaremko.topbooks.viewmodel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.yaremko.topbooks.model.Results
+import com.yaremko.topbooks.model.CategoryApiService
+import com.yaremko.topbooks.model.Names
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.observers.DisposableSingleObserver
+import io.reactivex.schedulers.Schedulers
 
 class CategoryListViewModel(application: Application) : AndroidViewModel(application) {
 
-    val categories by lazy { MutableLiveData<List<Results>>() }
 
-    init {
-        val category1 = Results("Testing", "T e s t", "weekly")
-        val category2 = Results("Testing2", "T e s t2", "montly")
+    private val disposable = CompositeDisposable()
+    private var apiService = CategoryApiService()
 
-        categories.value = listOf(category1, category2)
+    val categories by lazy { MutableLiveData<Names>() }
+
+
+     fun getCategories() {
+        disposable.add(
+            apiService.getCategories()
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object: DisposableSingleObserver<Names>() {
+                    override fun onSuccess(t: Names) {
+                        categories.value = t
+                    }
+
+                    override fun onError(e: Throwable) {
+                        e.printStackTrace()
+                    }
+                })
+        )
     }
 
 }

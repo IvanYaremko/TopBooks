@@ -8,22 +8,22 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.yaremko.topbooks.R
-import com.yaremko.topbooks.model.Results
+import com.yaremko.topbooks.model.Names
 import com.yaremko.topbooks.viewmodel.CategoryListViewModel
 import kotlinx.android.synthetic.main.fragment_category_list.*
-import java.util.*
 
 
 class CategoryListFragment : Fragment() {
 
     private lateinit var viewModel: CategoryListViewModel
-    private val categoryAdapter = CategoryListAdapater(arrayListOf())
+    private val categoryAdapter = CategoryListAdapter(arrayListOf())
 
-    private val categoryListDataObserver = Observer<List<Results>> {
+    private val categoryListDataObserver = Observer<Names> {
         list -> list?.let {
-            categoryAdapter.updateCategoryList(it)
+            it.results?.let {
+                    arrayList -> categoryAdapter.updateCategoryList(arrayList)
+            }
         }
     }
 
@@ -40,6 +40,7 @@ class CategoryListFragment : Fragment() {
 
         viewModel = ViewModelProviders.of(this).get(CategoryListViewModel::class.java)
         viewModel.categories.observe(this, categoryListDataObserver)
+        viewModel.getCategories()
 
         categoryRV.apply {
             layoutManager = LinearLayoutManager(context)

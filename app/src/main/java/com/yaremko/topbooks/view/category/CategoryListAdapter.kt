@@ -5,15 +5,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.yaremko.topbooks.R
-import com.yaremko.topbooks.model.Results
+import com.yaremko.topbooks.model.Names
+import com.yaremko.topbooks.model.Result
 import kotlinx.android.synthetic.main.category_item.view.*
 
-class CategoryListAdapater(private val categoryList: ArrayList<Results>) :
-    RecyclerView.Adapter<CategoryListAdapater.CategoryViewHolder>(){
+class CategoryListAdapter(private var categoryList: ArrayList<Result>) :
+    RecyclerView.Adapter<CategoryListAdapter.CategoryViewHolder>(){
 
     class CategoryViewHolder(var view: View) : RecyclerView.ViewHolder(view)
 
-    fun updateCategoryList(newCategoryList: List<Results>) {
+    fun updateCategoryList(newCategoryList: ArrayList<Result>) {
         categoryList.clear()
         categoryList.addAll(newCategoryList)
         notifyDataSetChanged()
