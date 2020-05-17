@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_bookListFragment_to_categoryListFragment"
             app:destination="@id/categoryListFragment" />
+        <argument
+            android:name="encodedName"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/bookDetailFragment"

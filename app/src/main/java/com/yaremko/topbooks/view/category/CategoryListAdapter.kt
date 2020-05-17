@@ -3,9 +3,10 @@ package com.yaremko.topbooks.view.category
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.NavDirections
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.yaremko.topbooks.R
-import com.yaremko.topbooks.model.Names
 import com.yaremko.topbooks.model.Result
 import kotlinx.android.synthetic.main.category_item.view.*
 
@@ -32,8 +33,16 @@ class CategoryListAdapter(private var categoryList: ArrayList<Result>) :
         holder.view.categoryText.text = categoryList[position].displayName
         holder.view.updatedText.text = categoryList[position].updated
 
-        // Implement listener
+        // Category listener that navigates to the next list of the clicked category
+        holder.view.categoryItem.setOnClickListener {
+            // elvis operator to check for nullability
+            val encodedName = categoryList[position].encodedName ?: "null"
+            val action: NavDirections = CategoryListFragmentDirections.actionCategoryListFragmentToBookListFragment(encodedName)
+            Navigation.findNavController(holder.view).navigate(action)
+        }
     }
+
+
 
 
 }
