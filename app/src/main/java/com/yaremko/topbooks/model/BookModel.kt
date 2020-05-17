@@ -34,7 +34,7 @@ data class SearchResults(
     val bestSellersData: String?,
     @SerializedName("published_date")
     @Expose
-    val publisedDate: String?,
+    val publishedDate: String?,
     @SerializedName("normal_list_ends_at")
     @Expose
     val entries: Int?,
