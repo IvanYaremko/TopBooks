@@ -16,8 +16,7 @@ import io.reactivex.schedulers.Schedulers
 class CategoryListViewModel(application: Application) : AndroidViewModel(application) {
 
     private val disposable = CompositeDisposable()
-    private var apiService =
-        CategoryApiService()
+    private var apiService = CategoryApiService()
 
     val categories by lazy { MutableLiveData<Names>() }
     val loading by lazy { MutableLiveData<Boolean>() }

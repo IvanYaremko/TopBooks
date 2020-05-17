@@ -14,7 +14,7 @@ import com.yaremko.topbooks.viewmodel.BookListViewModel
 class BookListFragment : Fragment() {
 
     private lateinit var categoryList: Result
-    private lateinit var bookListViewModel: BookListViewModel
+    private lateinit var viewModel: BookListViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
