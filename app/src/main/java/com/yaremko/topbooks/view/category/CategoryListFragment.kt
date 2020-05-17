@@ -19,12 +19,27 @@ class CategoryListFragment : Fragment() {
     private lateinit var viewModel: CategoryListViewModel
     private val categoryAdapter = CategoryListAdapter(arrayListOf())
 
+    // Observer that listens for any changes and updates the adapter
     private val categoryListDataObserver = Observer<Names> {
         list -> list?.let {
             it.results?.let {
                     arrayList -> categoryAdapter.updateCategoryList(arrayList)
+                    categoryRV.visibility = View.VISIBLE
             }
         }
+    }
+
+    private val loadingLiveDataObserver = Observer<Boolean> {
+        isLoading -> loaadingBar.visibility = if(isLoading) View.VISIBLE else View.GONE
+        if(isLoading)
+        {
+            loadError.visibility = View.GONE
+            categoryRV.visibility = View.GONE
+        }
+    }
+
+    private val loadErrorLiveDataObserver = Observer<Boolean> {
+        isError -> loadError.visibility = if(isError) View.VISIBLE else View.GONE
     }
 
     override fun onCreateView(
@@ -40,6 +55,8 @@ class CategoryListFragment : Fragment() {
 
         viewModel = ViewModelProviders.of(this).get(CategoryListViewModel::class.java)
         viewModel.categories.observe(this, categoryListDataObserver)
+        viewModel.loading.observe(this, loadingLiveDataObserver)
+        viewModel.loadError.observe(this, loadErrorLiveDataObserver)
         viewModel.getCategories()
 
         categoryRV.apply {

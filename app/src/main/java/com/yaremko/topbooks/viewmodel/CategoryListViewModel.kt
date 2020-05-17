@@ -17,9 +17,12 @@ class CategoryListViewModel(application: Application) : AndroidViewModel(applica
     private var apiService = CategoryApiService()
 
     val categories by lazy { MutableLiveData<Names>() }
-
+    val loading by lazy { MutableLiveData<Boolean>() }
+    val loadError by lazy { MutableLiveData<Boolean>() }
 
      fun getCategories() {
+        loadError.value = false
+        loading.value = true
         disposable.add(
             apiService.getCategories()
                 .subscribeOn(Schedulers.newThread())
@@ -27,10 +30,12 @@ class CategoryListViewModel(application: Application) : AndroidViewModel(applica
                 .subscribeWith(object: DisposableSingleObserver<Names>() {
                     override fun onSuccess(t: Names) {
                         categories.value = t
+                        loading.value = false
                     }
 
                     override fun onError(e: Throwable) {
                         e.printStackTrace()
+                        loadError.value = true
                     }
                 })
         )

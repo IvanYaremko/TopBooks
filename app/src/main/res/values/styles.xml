@@ -18,11 +18,16 @@
     </style>
 
     <style name="Small">
-        <item name="android:textSize">8sp</item>
+        <item name="android:textSize">9sp</item>
     </style>
 
     <style name="Small_bold">
-        <item name="android:textSize">8sp</item>
+        <item name="android:textSize">9sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Error">
+        <item name="android:textSize">12sp</item>
         <item name="android:textStyle">bold</item>
     </style>
 
