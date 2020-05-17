@@ -9,10 +9,12 @@ import androidx.appcompat.app.AppCompatActivity
 
 import com.yaremko.topbooks.R
 import com.yaremko.topbooks.model.Result
+import com.yaremko.topbooks.viewmodel.BookListViewModel
 
 class BookListFragment : Fragment() {
 
     private lateinit var categoryList: Result
+    private lateinit var bookListViewModel: BookListViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,6 +32,7 @@ class BookListFragment : Fragment() {
         }
 
         (activity as AppCompatActivity).supportActionBar?.title = categoryList.displayName
+
 
 
     }

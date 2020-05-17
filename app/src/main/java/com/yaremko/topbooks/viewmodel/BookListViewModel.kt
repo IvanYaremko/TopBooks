@@ -1,4 +1,8 @@
 package com.yaremko.topbooks.viewmodel
 
-class BookListViewModel {
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
+
+class BookListViewModel(application: Application) : AndroidViewModel(application) {
+
 }
