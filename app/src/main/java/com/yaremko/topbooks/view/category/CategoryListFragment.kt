@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -50,8 +51,12 @@ class CategoryListFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_category_list, container, false)
     }
 
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        (activity as AppCompatActivity).supportActionBar?.title = "Categories"
 
         viewModel = ViewModelProviders.of(this).get(CategoryListViewModel::class.java)
         viewModel.categories.observe(this, categoryListDataObserver)

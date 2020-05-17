@@ -26,8 +26,8 @@
             android:id="@+id/action_bookListFragment_to_categoryListFragment"
             app:destination="@id/categoryListFragment" />
         <argument
-            android:name="encodedName"
-            app:argType="string" />
+            android:name="CategoryResult"
+            app:argType="com.yaremko.topbooks.model.Result" />
     </fragment>
     <fragment
         android:id="@+id/bookDetailFragment"

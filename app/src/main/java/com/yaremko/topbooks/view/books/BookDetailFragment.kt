@@ -11,6 +11,7 @@ import com.yaremko.topbooks.R
 class BookDetailFragment : Fragment() {
 
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -19,5 +20,9 @@ class BookDetailFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_book_detail, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+    }
 
 }

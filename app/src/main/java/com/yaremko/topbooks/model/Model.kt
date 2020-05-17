@@ -1,5 +1,7 @@
 package com.yaremko.topbooks.model
 
+import android.os.Parcel
+import android.os.Parcelable
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
@@ -18,6 +20,7 @@ data class Names (
     val results: ArrayList<Result>?
 
 )
+
 
 data class Result(
     @SerializedName("list_name")
@@ -38,4 +41,38 @@ data class Result(
     @SerializedName("updated")
     @Expose
     val updated: String?
-)
+) : Parcelable {
+    constructor(parcel: Parcel) : this(
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString()
+    ) {
+    }
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(listName)
+        parcel.writeString(displayName)
+        parcel.writeString(encodedName)
+        parcel.writeString(oldestPublishedDate)
+        parcel.writeString(newestPublishedDate)
+        parcel.writeString(updated)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<Result> {
+        override fun createFromParcel(parcel: Parcel): Result {
+            return Result(parcel)
+        }
+
+        override fun newArray(size: Int): Array<Result?> {
+            return arrayOfNulls(size)
+        }
+    }
+
+}

@@ -36,8 +36,8 @@ class CategoryListAdapter(private var categoryList: ArrayList<Result>) :
         // Category listener that navigates to the next list of the clicked category
         holder.view.categoryItem.setOnClickListener {
             // elvis operator to check for nullability
-            val encodedName = categoryList[position].encodedName ?: "null"
-            val action: NavDirections = CategoryListFragmentDirections.actionCategoryListFragmentToBookListFragment(encodedName)
+            val category = categoryList[position]
+            val action: NavDirections = CategoryListFragmentDirections.actionCategoryListFragmentToBookListFragment(category)
             Navigation.findNavController(holder.view).navigate(action)
         }
     }
