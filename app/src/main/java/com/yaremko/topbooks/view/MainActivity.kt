@@ -7,7 +7,9 @@ import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import com.yaremko.topbooks.R
 import kotlinx.android.synthetic.main.activity_main.*
-
+/*
+    This project used the MVVM architecture
+ */
 class MainActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController

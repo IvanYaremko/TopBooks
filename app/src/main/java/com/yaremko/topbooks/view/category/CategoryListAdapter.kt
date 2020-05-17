@@ -10,6 +10,9 @@ import com.yaremko.topbooks.R
 import com.yaremko.topbooks.model.Result
 import kotlinx.android.synthetic.main.category_item.view.*
 
+/*
+    Adapter class to bind the list of categories into the recycler view
+ */
 class CategoryListAdapter(private var categoryList: ArrayList<Result>) :
     RecyclerView.Adapter<CategoryListAdapter.CategoryViewHolder>(){
 

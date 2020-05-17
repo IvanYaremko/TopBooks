@@ -14,13 +14,20 @@ import com.yaremko.topbooks.model.Names
 import com.yaremko.topbooks.viewmodel.CategoryListViewModel
 import kotlinx.android.synthetic.main.fragment_category_list.*
 
-
+/*
+    This Fragment is used to display the categories of books
+    The categories are retrieved from nytimes books api
+ */
 class CategoryListFragment : Fragment() {
 
     private lateinit var viewModel: CategoryListViewModel
     private val categoryAdapter = CategoryListAdapter(arrayListOf())
 
-    // Observer that listens for any changes and updates the adapter
+     /*
+         Observer that listens for any changes and updates the adapter
+         Checks for nullability and sends the Result class member variable from the Names Class
+         To the adapter to update the recycler view
+      */
     private val categoryListDataObserver = Observer<Names> {
         list -> list?.let {
             it.results?.let {
@@ -30,8 +37,11 @@ class CategoryListFragment : Fragment() {
         }
     }
 
+    /*
+        Observer that toggles the progress bar widget on or off
+     */
     private val loadingLiveDataObserver = Observer<Boolean> {
-        isLoading -> loaadingBar.visibility = if(isLoading) View.VISIBLE else View.GONE
+        isLoading -> loadingBar.visibility = if(isLoading) View.VISIBLE else View.GONE
         if(isLoading)
         {
             loadError.visibility = View.GONE

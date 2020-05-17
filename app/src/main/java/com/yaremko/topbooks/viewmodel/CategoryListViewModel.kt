@@ -9,20 +9,27 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
-
+/*
+    This viewmodel class retrieves data from the CategoryApiService class and CategoryModel file,
+    it then applies the UI logic and updates the LiveData observables
+ */
 class CategoryListViewModel(application: Application) : AndroidViewModel(application) {
 
-
     private val disposable = CompositeDisposable()
-    private var apiService = CategoryApiService()
+    private var apiService =
+        CategoryApiService()
 
     val categories by lazy { MutableLiveData<Names>() }
     val loading by lazy { MutableLiveData<Boolean>() }
     val loadError by lazy { MutableLiveData<Boolean>() }
 
+    /*
+        Method to retrieve the api data and store it into the
+        observable 'categories' value.
+     */
      fun getCategories() {
         loadError.value = false
-        loading.value = true
+        loading.value = true // sets progress bar to true while api data is collected
         disposable.add(
             apiService.getCategories()
                 .subscribeOn(Schedulers.newThread())
@@ -30,7 +37,7 @@ class CategoryListViewModel(application: Application) : AndroidViewModel(applica
                 .subscribeWith(object: DisposableSingleObserver<Names>() {
                     override fun onSuccess(t: Names) {
                         categories.value = t
-                        loading.value = false
+                        loading.value = false // sets the progress bar to false once the api is retrieved
                     }
 
                     override fun onError(e: Throwable) {
