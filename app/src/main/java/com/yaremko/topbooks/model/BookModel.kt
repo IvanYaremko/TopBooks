@@ -1,5 +1,7 @@
 package com.yaremko.topbooks.model
 
+import android.os.Parcel
+import android.os.Parcelable
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
@@ -77,4 +79,45 @@ data class Books (
     @SerializedName("amazon_product_url")
     @Expose
     val amazonLink: String?
-)
+) : Parcelable {
+    constructor(parcel: Parcel) : this(
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString()
+    ) {
+    }
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(rank)
+        parcel.writeString(lastWeekRank)
+        parcel.writeString(weeksOnList)
+        parcel.writeString(publisher)
+        parcel.writeString(description)
+        parcel.writeString(bookTitle)
+        parcel.writeString(bookAuthor)
+        parcel.writeString(bookContributor)
+        parcel.writeString(bookImageURL)
+        parcel.writeString(amazonLink)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<Books> {
+        override fun createFromParcel(parcel: Parcel): Books {
+            return Books(parcel)
+        }
+
+        override fun newArray(size: Int): Array<Books?> {
+            return arrayOfNulls(size)
+        }
+    }
+}

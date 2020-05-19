@@ -3,6 +3,8 @@ package com.yaremko.topbooks.view.books
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.NavDirections
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.yaremko.topbooks.R
 import com.yaremko.topbooks.model.Books
@@ -37,5 +39,10 @@ class BookListAdapter(private var bookList: ArrayList<Books>)
         bookList[position].bookImageURL?.let { holder.view.bookImage.loadImage(it, getProgressDrawable(holder.view.context)) }
 
         // IMPLEMENT LISTENER
+        holder.view.bookItem.setOnClickListener {
+            val book = bookList[position]
+            val action: NavDirections = BookListFragmentDirections.actionBookListFragmentToBookDetailFragment(book)
+            Navigation.findNavController(holder.view).navigate(action)
+        }
     }
 }

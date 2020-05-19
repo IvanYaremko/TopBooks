@@ -37,5 +37,8 @@
         <action
             android:id="@+id/action_bookDetailFragment_to_bookListFragment"
             app:destination="@id/bookListFragment" />
+        <argument
+            android:name="book"
+            app:argType="com.yaremko.topbooks.model.Books" />
     </fragment>
 </navigation>
