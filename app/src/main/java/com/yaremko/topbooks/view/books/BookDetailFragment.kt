@@ -51,8 +51,16 @@ class BookDetailFragment : Fragment() {
             setBackgroundColour(it)
         }
 
-        book.bookAuthor?.let {
+        book.bookTitle?.let {
             detailTitle.text = it
+        }
+
+        book.bookContributor?.let {
+            detailAuthor.text = it
+        }
+
+        book.description?.let {
+            detailDescription.text = it
         }
 
     }
