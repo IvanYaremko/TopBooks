@@ -27,9 +27,22 @@ class BookListFragment : Fragment() {
             it.searchResult?.let {
                     it.bookList?.let {
                         arrayList -> bookListAdapter.updateBookList(arrayList)
+                        booksRV.visibility = View.VISIBLE
                     }
             }
         }
+    }
+
+    private val loadingLiveDataObserver = Observer<Boolean> {
+        isLoading -> progressBar.visibility = if(isLoading) View.VISIBLE else View.GONE
+        if(isLoading) {
+            errorText.visibility = View.GONE
+            booksRV.visibility = View.GONE
+        }
+    }
+
+    private val errorLiveDataObserver = Observer<Boolean> {
+        errorText.visibility = if (it) View.VISIBLE else View.GONE
     }
 
     override fun onCreateView(
@@ -51,6 +64,8 @@ class BookListFragment : Fragment() {
 
         viewModel = ViewModelProviders.of(this).get(BookListViewModel::class.java)
         viewModel.listName.observe(this, listNameDataObserver)
+        viewModel.loading.observe(this, loadingLiveDataObserver)
+        viewModel.loadError.observe(this, errorLiveDataObserver)
 
         // Checks for nullability before passing the argument to the function
         categoryList.encodedName?.let { viewModel.getBookList(it) }

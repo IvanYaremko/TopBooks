@@ -35,7 +35,7 @@ class BookListAdapter(private var bookList: ArrayList<Books>)
     override fun onBindViewHolder(holder: booksViewHolder, position: Int) {
         holder.view.rankText.text = bookList[position].rank
         holder.view.bookTitleText.text = bookList[position].bookTitle
-        holder.view.bookAuthorText.text = bookList[position].bookContributor
+        holder.view.bookAuthorText.text = bookList[position].bookAuthor
         bookList[position].bookImageURL?.let { holder.view.bookImage.loadImage(it, getProgressDrawable(holder.view.context)) }
 
         // IMPLEMENT LISTENER

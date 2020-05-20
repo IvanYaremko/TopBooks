@@ -8,6 +8,8 @@ import com.bumptech.glide.request.transition.Transition
 
 import android.graphics.Bitmap
 import android.os.Bundle
+import android.text.Html
+import android.text.util.Linkify
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -55,7 +57,7 @@ class BookDetailFragment : Fragment() {
             detailTitle.text = it
         }
 
-        book.bookContributor?.let {
+        book.bookAuthor?.let {
             detailAuthor.text = it
         }
 

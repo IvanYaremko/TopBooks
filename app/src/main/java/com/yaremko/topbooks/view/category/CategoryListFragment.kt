@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.yaremko.topbooks.R
 import com.yaremko.topbooks.model.Names
 import com.yaremko.topbooks.viewmodel.CategoryListViewModel
+import kotlinx.android.synthetic.main.fragment_book_list.*
 import kotlinx.android.synthetic.main.fragment_category_list.*
 
 /*
