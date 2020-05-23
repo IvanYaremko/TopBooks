@@ -21,7 +21,6 @@ class BookListViewModel(application: Application) : AndroidViewModel(application
 
     fun getBookList(listName: String){
         loading.value = true
-        loadError.value = false
 
         disposable.add(
             apiService.getBookList(listName)
@@ -31,9 +30,11 @@ class BookListViewModel(application: Application) : AndroidViewModel(application
                     override fun onSuccess(t: ListName) {
                         this@BookListViewModel.listName.value = t
                         loading.value = false
+                        loadError.value = false
                     }
 
                     override fun onError(e: Throwable) {
+                        loading.value = false
                         loadError.value = true
                     }
                 } )

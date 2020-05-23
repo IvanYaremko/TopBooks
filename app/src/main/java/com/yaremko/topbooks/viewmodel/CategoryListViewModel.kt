@@ -53,6 +53,7 @@ class CategoryListViewModel(application: Application) : AndroidViewModel(applica
 
                     override fun onError(e: Throwable) {
                         e.printStackTrace()
+                        loading.value = false
                         loadError.value = true
                     }
                 })
