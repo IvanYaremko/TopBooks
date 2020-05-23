@@ -49,6 +49,18 @@ class CategoryListViewModelTest {
         Assert.assertEquals(false, listViewModel.loading.value)
     }
 
+    @Test
+    fun getCategoriesFailure() {
+        val testSingle = Single.error<Names>(Throwable())
+
+        Mockito.`when`(apiService.getCategories()).thenReturn(testSingle)
+
+        listViewModel.getCategories()
+
+        Assert.assertEquals(null, listViewModel.categories.value)
+        Assert.assertEquals(true, listViewModel.loadError.value)
+        Assert.assertEquals(false, listViewModel.loading.value)
+    }
 
     @Before
     fun setup() {
