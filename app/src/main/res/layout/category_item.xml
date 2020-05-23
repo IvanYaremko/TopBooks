@@ -39,8 +39,8 @@
     <TextView
         android:id="@+id/updatedText"
         style="@style/Small_bold"
-        android:layout_width="47dp"
-        android:layout_height="14dp"
+        android:layout_width="61dp"
+        android:layout_height="15dp"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
