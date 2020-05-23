@@ -9,7 +9,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 @Module
-class CategoryApiModule {
+open class CategoryApiModule {
 
     @Provides
     fun provideCategoryApi(): CategoryAPI {
@@ -22,7 +22,7 @@ class CategoryApiModule {
     }
 
     @Provides
-    fun provideCategoryApiService() : CategoryApiService {
+    open fun provideCategoryApiService() : CategoryApiService {
         return CategoryApiService()
     }
 

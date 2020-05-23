@@ -38,7 +38,7 @@ class CategoryListViewModel(application: Application) : AndroidViewModel(applica
         observable 'categories' value.
      */
      fun getCategories() {
-        loadError.value = false
+
         loading.value = true // sets progress bar to true while api data is collected
         disposable.add(
             apiService.getCategories()
@@ -48,6 +48,7 @@ class CategoryListViewModel(application: Application) : AndroidViewModel(applica
                     override fun onSuccess(t: Names) {
                         categories.value = t
                         loading.value = false // sets the progress bar to false once the api is retrieved
+                        loadError.value = false
                     }
 
                     override fun onError(e: Throwable) {
