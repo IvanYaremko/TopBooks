@@ -4,7 +4,7 @@ import com.yaremko.topbooks.model.CategoryApiService
 import dagger.Component
 
 @Component(modules = [CategoryApiModule::class])
-interface CategoryApiComponant {
+interface CategoryApiComponent {
 
     fun inject(service: CategoryApiService)
 }

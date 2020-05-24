@@ -4,7 +4,7 @@ import com.yaremko.topbooks.model.BookApiService
 import dagger.Component
 
 @Component(modules = [BookApiModule::class])
-interface BookApiComponant {
+interface BookApiComponent {
 
     fun inject(service: BookApiService)
 }

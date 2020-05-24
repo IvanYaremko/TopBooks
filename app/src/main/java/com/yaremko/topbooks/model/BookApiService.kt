@@ -1,6 +1,7 @@
 package com.yaremko.topbooks.model
 
-import com.yaremko.topbooks.di.DaggerBookApiComponant
+
+import com.yaremko.topbooks.di.DaggerBookApiComponent
 import io.reactivex.Single
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -20,7 +21,7 @@ class BookApiService {
     lateinit var api: BookAPI
 
     init {
-        DaggerBookApiComponant.create().inject(this)
+        DaggerBookApiComponent.create().inject(this)
     }
 
     fun getBookList(listName: String) : Single<ListName> {

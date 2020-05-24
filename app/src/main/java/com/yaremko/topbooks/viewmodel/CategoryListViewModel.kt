@@ -3,7 +3,6 @@ package com.yaremko.topbooks.viewmodel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.yaremko.topbooks.di.DaggerCategoryApiComponant
 import com.yaremko.topbooks.di.DaggerCategoryViewModelComponent
 import com.yaremko.topbooks.model.CategoryApiService
 import com.yaremko.topbooks.model.Names

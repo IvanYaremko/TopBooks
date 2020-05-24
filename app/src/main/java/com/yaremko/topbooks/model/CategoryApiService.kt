@@ -1,6 +1,7 @@
 package com.yaremko.topbooks.model
 
-import com.yaremko.topbooks.di.DaggerCategoryApiComponant
+
+import com.yaremko.topbooks.di.DaggerCategoryApiComponent
 import io.reactivex.Single
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -20,7 +21,7 @@ class CategoryApiService {
     lateinit var api: CategoryAPI
 
     init {
-        DaggerCategoryApiComponant.create().inject(this)
+      DaggerCategoryApiComponent.create().inject(this)
     }
 
     fun getCategories(): Single<Names> {
