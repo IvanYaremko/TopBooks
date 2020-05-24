@@ -3,21 +3,31 @@ package com.yaremko.topbooks.viewmodel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import com.yaremko.topbooks.di.DaggerBookListViewModelComponent
 import com.yaremko.topbooks.model.BookApiService
 import com.yaremko.topbooks.model.ListName
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
 class BookListViewModel(application: Application) : AndroidViewModel(application) {
 
     private val disposable = CompositeDisposable()
-    private val apiService = BookApiService()
+//    private val apiService = BookApiService()
+
+    @Inject
+    lateinit var apiService : BookApiService
 
     val listName by lazy { MutableLiveData<ListName>() }
     val loading by lazy { MutableLiveData<Boolean>() }
     val loadError by lazy { MutableLiveData<Boolean>() }
+
+
+    init {
+        DaggerBookListViewModelComponent.create().inject(this)
+    }
 
     fun getBookList(listName: String){
         loading.value = true
