@@ -15,7 +15,6 @@ import javax.inject.Inject
 class BookListViewModel(application: Application) : AndroidViewModel(application) {
 
     private val disposable = CompositeDisposable()
-//    private val apiService = BookApiService()
 
     @Inject
     lateinit var apiService : BookApiService

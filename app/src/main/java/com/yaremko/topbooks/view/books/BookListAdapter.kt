@@ -11,12 +11,11 @@ import com.yaremko.topbooks.model.Books
 import com.yaremko.topbooks.util.getProgressDrawable
 import com.yaremko.topbooks.util.loadImage
 import kotlinx.android.synthetic.main.book_item.view.*
-import java.util.zip.Inflater
 
 class BookListAdapter(private var bookList: ArrayList<Books>)
-    : RecyclerView.Adapter<BookListAdapter.booksViewHolder>(){
+    : RecyclerView.Adapter<BookListAdapter.BooksViewHolder>(){
 
-    class booksViewHolder(var view: View) : RecyclerView.ViewHolder(view)
+    class BooksViewHolder(var view: View) : RecyclerView.ViewHolder(view)
 
     fun updateBookList(newBookList: ArrayList<Books>) {
         bookList.clear()
@@ -24,15 +23,15 @@ class BookListAdapter(private var bookList: ArrayList<Books>)
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): booksViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BooksViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(R.layout.book_item, parent, false)
-        return booksViewHolder(view)
+        return BooksViewHolder(view)
     }
 
     override fun getItemCount() = bookList.size
 
-    override fun onBindViewHolder(holder: booksViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: BooksViewHolder, position: Int) {
         holder.view.rankText.text = bookList[position].rank
         holder.view.bookTitleText.text = bookList[position].bookTitle
         holder.view.bookAuthorText.text = bookList[position].bookAuthor

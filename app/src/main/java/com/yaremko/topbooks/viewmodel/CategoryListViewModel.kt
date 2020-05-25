@@ -12,14 +12,10 @@ import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-/*
-    This viewmodel class retrieves data from the CategoryApiService class and CategoryModel file,
-    it then applies the UI logic and updates the LiveData observables
- */
+
 class CategoryListViewModel(application: Application) : AndroidViewModel(application) {
 
     private val disposable = CompositeDisposable()
-//    private var apiService = CategoryApiService()
 
     @Inject
     lateinit var apiService: CategoryApiService
@@ -32,10 +28,6 @@ class CategoryListViewModel(application: Application) : AndroidViewModel(applica
         DaggerCategoryViewModelComponent.create().inject(this)
     }
 
-    /*
-        Method to retrieve the api data and store it into the
-        observable 'categories' value.
-     */
      fun getCategories() {
 
         loading.value = true // sets progress bar to true while api data is collected
