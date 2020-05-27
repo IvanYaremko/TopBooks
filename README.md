@@ -1,15 +1,23 @@
 # TopBooks
-Android app that shows best selling books from the NY times API.
+Android app written in Kotlin, that shows best selling books from the NY times API.
 The app uses a RecyclerView List that shows categories that are retrieved from the API, on a selected category the best selling books are showed. A detail screen is available for every book. 
-
 
 ## About
 I created this app as a summer project to learn about android development. 
 This project has taught me how to use an architecture pattern to develop an app, how to use various android libraries and has given me surface knowledge on dependancy injection and unit testing.
 
 ## Tech 
-The app uses MVVM arhitecture pattern, android jetback libraries, retrofit for remote api management, glide for image processing and palette for customisation, dagger2 for dependancy injection and mockito for unit testing
+The app uses:
 
+• MVVM arhitecture pattern to structure the code base
+
+• Android jetback libraries
+
+• Retrofit for remote api calls 
+
+• Glide for image processing
+
+• Dagger2 for dependancy injection and Mockito for unit testing.
 
 # MVVM 
 MVVM is an architectural patterns that which uses seperation of concerns. It allows the seperating of UI logic from the business logic
