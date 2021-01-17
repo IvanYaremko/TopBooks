@@ -19,6 +19,11 @@ The app uses:
 
 • Dagger2 for dependancy injection and Mockito for unit testing.
 
+# App screenshots
+
+
+![](images/sc1.jpg) ![](images/sc2.jpg) ![](images/sc3.jpg)
+
 # MVVM 
 MVVM is an architectural patterns that which uses seperation of concerns. It allows the seperating of UI logic from the business logic
 
